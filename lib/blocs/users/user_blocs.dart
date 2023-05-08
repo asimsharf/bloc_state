@@ -1,8 +1,8 @@
-import 'package:bloc_state/blocs/user_states.dart';
-import 'package:bloc_state/repos/user_repository.dart';
+import 'package:bloc_state/blocs/users/user_states.dart';
 import 'package:bloc_state/the_response.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../repositories/user_repository.dart';
 import 'user_events.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {

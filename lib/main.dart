@@ -1,10 +1,10 @@
-import 'package:bloc_state/blocs/user_states.dart';
-import 'package:bloc_state/repos/user_repository.dart';
+import 'package:bloc_state/blocs/users/user_states.dart';
+import 'package:bloc_state/repositories/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'blocs/user_blocs.dart';
-import 'blocs/user_events.dart';
+import 'blocs/users/user_blocs.dart';
+import 'blocs/users/user_events.dart';
 
 void main() {
   runApp(const MyApp());
