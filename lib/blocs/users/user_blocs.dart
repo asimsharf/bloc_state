@@ -1,5 +1,5 @@
 import 'package:bloc_state/blocs/users/user_states.dart';
-import 'package:bloc_state/the_response.dart';
+import 'package:bloc_state/utils/the_response.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../repositories/user_repository.dart';

@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:bloc_state/models/user.dart';
 import 'package:http/http.dart';
 
-import '../the_response.dart';
+import '../utils/the_response.dart';
 
 class UserRepository {
   String endpoint = 'https://jsonplaceholder.typicode.com/users';
