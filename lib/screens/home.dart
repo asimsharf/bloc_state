@@ -1,5 +1,6 @@
 import 'package:bloc_state/blocs/users/user_states.dart';
 import 'package:bloc_state/repositories/user_repository.dart';
+import 'package:bloc_state/screens/counter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,7 +19,14 @@ class Home extends StatelessWidget {
       )..add(LoadUserEvent()),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Bloc State'),
+          title: InkWell(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const Counter()),
+              );
+            },
+            child: const Text('Bloc Counter State'),
+          ),
         ),
         body: BlocBuilder<UserBloc, UserState>(
           builder: (context, state) {
