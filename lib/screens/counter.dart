@@ -30,7 +30,7 @@ class CounterView extends StatelessWidget {
         builder: (context, state) {
           return Center(
             child: Text(
-              '${state.count}',
+              '${(state as Count).count}',
               style: const TextStyle(fontSize: 24),
             ),
           );
@@ -41,14 +41,14 @@ class CounterView extends StatelessWidget {
         children: [
           FloatingActionButton(
             onPressed: () {
-              context.read<CounterBloc>().add(IncrementCounterEvent());
+              context.read<CounterBloc>().add(Increment());
             },
             child: const Icon(Icons.add),
           ),
           const SizedBox(height: 16),
           FloatingActionButton(
             onPressed: () {
-              context.read<CounterBloc>().add(DecrementCounterEvent());
+              context.read<CounterBloc>().add(Decrement());
             },
             child: const Icon(Icons.remove),
           ),

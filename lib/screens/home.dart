@@ -16,7 +16,7 @@ class Home extends StatelessWidget {
     return BlocProvider(
       create: (context) => UserBloc(
         userRepository: RepositoryProvider.of<UserRepository>(context),
-      )..add(LoadUserEvent()),
+      )..add(Fetch()),
       child: Scaffold(
         appBar: AppBar(
           title: InkWell(
@@ -30,23 +30,23 @@ class Home extends StatelessWidget {
         ),
         body: BlocBuilder<UserBloc, UserState>(
           builder: (context, state) {
-            if (state is UserLoadingState) {
+            if (state is Loading) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
             }
-            if (state is UserErrorState) {
+            if (state is Error) {
               return Center(
                 child: Text(state.message),
               );
             }
-            if (state is UserEmptyState) {
+            if (state is Empty) {
               return const Center(
                 child: Text('No data'),
               );
             }
             return ListView.builder(
-              itemCount: (state as UserLoadedState).users.length,
+              itemCount: (state as Loaded).users.length,
               itemBuilder: (_, i) {
                 return cardList(_, user: state.users[i]);
               },

@@ -8,19 +8,19 @@ import 'user_events.dart';
 class UserBloc extends Bloc<UserEvent, UserState> {
   final UserRepository userRepository;
 
-  UserBloc({required this.userRepository}) : super(UserEmptyState()) {
+  UserBloc({required this.userRepository}) : super(Empty()) {
     on<UserEvent>((event, emit) async {
-      if (event is LoadUserEvent) {
-        emit(UserLoadingState());
+      if (event is Fetch) {
+        emit(Loading());
         try {
           TheResponse response = await userRepository.getUsers();
           if (response.code == 1) {
-            emit(UserLoadedState(users: response.data));
+            emit(Loaded(users: response.data));
           } else {
-            emit(UserErrorState(message: response.message));
+            emit(Error(message: response.message));
           }
         } catch (e) {
-          emit(UserErrorState(message: e.toString()));
+          emit(Error(message: e.toString()));
         }
       }
     });

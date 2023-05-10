@@ -2,10 +2,16 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 
 @immutable
-class CounterState extends Equatable {
+abstract class CounterState extends Equatable {
+  const CounterState();
+  int get count => 0;
+}
+
+class Count extends CounterState {
+  @override
   final int count;
 
-  const CounterState({required this.count});
+  const Count({required this.count});
 
   @override
   List<Object?> get props => [count];

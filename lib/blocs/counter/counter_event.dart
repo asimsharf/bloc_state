@@ -6,12 +6,12 @@ abstract class CounterEvent extends Equatable {
   const CounterEvent();
 }
 
-class IncrementCounterEvent extends CounterEvent {
+class Increment extends CounterEvent {
   @override
   List<Object?> get props => [];
 }
 
-class DecrementCounterEvent extends CounterEvent {
+class Decrement extends CounterEvent {
   @override
   List<Object?> get props => [];
 }
