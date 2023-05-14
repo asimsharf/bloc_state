@@ -1,6 +1,7 @@
 import 'package:bloc_state/blocs/users/user_states.dart';
 import 'package:bloc_state/repositories/user_repository.dart';
-import 'package:bloc_state/screens/counter.dart';
+import 'package:bloc_state/screens/trading.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,14 +16,15 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => UserBloc(
-        userRepository: RepositoryProvider.of<UserRepository>(context),
+        // userRepository: RepositoryProvider.of<UserRepository>(context),
+        userRepository: UserRepository(),
       )..add(Fetch()),
       child: Scaffold(
         appBar: AppBar(
           title: InkWell(
             onTap: () {
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => const Counter()),
+                MaterialPageRoute(builder: (_) => const Trading()),
               );
             },
             child: const Text('Bloc Counter State'),
@@ -32,7 +34,7 @@ class Home extends StatelessWidget {
           builder: (context, state) {
             if (state is Loading) {
               return const Center(
-                child: CircularProgressIndicator(),
+                child: CupertinoActivityIndicator(),
               );
             }
             if (state is Error) {

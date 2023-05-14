@@ -13,6 +13,11 @@ class Fetch extends UserEvent {
   List<Object?> get props => [];
 }
 
+class FetchGetCandleData extends UserEvent {
+  @override
+  List<Object?> get props => [];
+}
+
 class Update extends UserEvent {
   final UserModel user;
 
