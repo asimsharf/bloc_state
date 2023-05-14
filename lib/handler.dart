@@ -15,11 +15,14 @@ class Student {
   }
 }
 
-/// Service
+/// Web Service
 class StudentWebService {
   Future<List<Student>> fetchStudents() async {
-    final response =
-        await http.get(Uri.parse('http://localhost:3000/students'));
+    final response = await http.get(
+      Uri.parse(
+        'http://localhost:3000/students',
+      ),
+    );
     if (response.statusCode == 200) {
       List jsonResponse = json.decode(response.body);
       return jsonResponse.map((data) => Student.fromJson(data)).toList();
