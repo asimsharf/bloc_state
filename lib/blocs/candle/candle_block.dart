@@ -12,21 +12,29 @@ class CandleBloc extends Bloc<CandleEvent, CandleState> {
   final CandleRepository candleRepository;
 
   CandleBloc({required this.candleRepository}) : super(Empty()) {
+    timer();
+    on<CandleEvent>((event, emit) {
+      if (event is Fetch) {
+        // emit(Loading());
+        fetch(event, emit);
+      }
+    });
+  }
+
+  timer() {
     Timer.periodic(const Duration(seconds: 1), (timer) async {
       add(Fetch());
     });
-    on<CandleEvent>((event, emit) async {
-      if (event is Fetch) {
-        // emit(Loading());
-        try {
-          Stream<List<CandleModel>> candles = candleRepository.getCandle();
+  }
 
-          List<CandleModel> candleList = await candles.first;
-          emit(Loaded(candles: candleList));
-        } catch (e) {
-          emit(Error(message: e.toString()));
-        }
-      }
-    });
+  fetch(event, emit) async {
+    try {
+      Stream<List<CandleModel>> candles = candleRepository.getCandle();
+
+      List<CandleModel> candleList = await candles.first;
+      emit(Loaded(candles: candleList));
+    } catch (e) {
+      emit(Error(message: e.toString()));
+    }
   }
 }

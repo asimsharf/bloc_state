@@ -88,9 +88,41 @@ class Error extends EmployeeState {
 }
 
 // EmployeeEvents
+@immutable
+abstract class EmployeeEvents extends Equatable {
+  const EmployeeEvents();
+}
+
 // EmployeeEvents -> Fetch
+class Fetch extends EmployeeEvents {
+  @override
+  List<Object?> get props => [];
+}
+
 // EmployeeEvents -> Create
+class Create extends EmployeeEvents {
+  final String name;
+  final String email;
+  final String phone;
+
+  const Create({
+    required this.name,
+    required this.email,
+    required this.phone,
+  });
+
+  @override
+  List<Object?> get props => [name, email, phone];
+}
+
 // EmployeeEvents -> Delete
+class Delete extends EmployeeEvents {
+  final int id;
+  const Delete({required this.id});
+
+  @override
+  List<Object?> get props => [id];
+}
 // EmployeeEvents -> Update
 // EmployeeEvents -> Search
 // EmployeeEvents -> Filter
@@ -101,3 +133,4 @@ class Error extends EmployeeState {
 /// PL -> Presentation Layer ->
 /// lib/views
 // EmployeeViews
+

@@ -18,10 +18,11 @@ class UserRepository {
     );
 
     if (response.statusCode == 200) {
+      List jsonResponse = jsonDecode(response.body);
       return TheResponse(
         code: 1,
         message: 'Success',
-        data: (jsonDecode(response.body) as List).map((e) {
+        data: jsonResponse.map((e) {
           return UserModel.fromJson(e);
         }).toList(),
       );
@@ -45,10 +46,11 @@ class UserRepository {
     );
 
     if (response.statusCode == 200) {
+      List jsonResponse = jsonDecode(response.body);
       return TheResponse(
         code: 1,
         message: 'Success',
-        data: (jsonDecode(response.body) as List).map((e) {
+        data: jsonResponse.map((e) {
           return e;
         }).toList(),
       );
@@ -73,7 +75,8 @@ class UserRepository {
     );
 
     if (response.statusCode == 200) {
-      yield (jsonDecode(response.body) as List).map((e) {
+      List jsonResponse = jsonDecode(response.body);
+      yield jsonResponse.map((e) {
         return CandleModel(
           x: DateTime.fromMillisecondsSinceEpoch(e[0]),
           open: num.parse(e[1]),
@@ -97,10 +100,11 @@ class UserRepository {
     );
 
     if (response.statusCode == 200) {
+      List jsonResponse = jsonDecode(response.body);
       return TheResponse(
         code: 1,
         message: 'Success',
-        data: (jsonDecode(response.body) as List).map((e) {
+        data: jsonResponse.map((e) {
           return SymbolModel.fromJson(e);
         }).toList(),
       );
